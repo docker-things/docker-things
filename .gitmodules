@@ -1,0 +1,36 @@
+[submodule "repos/gui-apps-base"]
+	path = repos/gui-apps-base
+	url = https://github.com/docker-things/gui-apps-base.git
+[submodule "repos/android-studio"]
+	path = repos/android-studio
+	url = https://github.com/docker-things/android-studio.git
+[submodule "repos/smarthome"]
+	path = repos/smarthome
+	url = https://github.com/docker-things/smarthome.git
+[submodule "repos/duckdns"]
+	path = repos/duckdns
+	url = https://github.com/docker-things/duckdns.git
+[submodule "repos/chromium"]
+	path = repos/chromium
+	url = https://github.com/docker-things/chromium.git
+[submodule "repos/sublimetext"]
+	path = repos/sublimetext
+	url = https://github.com/docker-things/sublimetext.git
+[submodule "repos/firefox"]
+	path = repos/firefox
+	url = https://github.com/docker-things/firefox.git
+[submodule "repos/thunderbird"]
+	path = repos/thunderbird
+	url = https://github.com/docker-things/thunderbird.git
+[submodule "repos/mattermost"]
+	path = repos/mattermost
+	url = https://github.com/docker-things/mattermost.git
+[submodule "repos/keepass"]
+	path = repos/keepass
+	url = https://github.com/docker-things/keepass.git
+[submodule "repos/dropbox"]
+	path = repos/dropbox
+	url = https://github.com/docker-things/dropbox.git
+[submodule "repos/tunneling-service"]
+	path = repos/tunneling-service
+	url = https://github.com/docker-things/tunneling-service.git
