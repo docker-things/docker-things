@@ -119,11 +119,16 @@ function deleteThing() {
 }
 function configThing() {
     showGreen "\nConfiguring $1..."
-    cat "$REPOS_PATH/$1/config.sh" | grep -v 'DOCKER_CMD=' | grep -v 'BACKUP_PATH=' > "$REPOS_PATH/$1/config.sh.tmp"
-    echo "DOCKER_CMD='$DOCKER_CMD'" >> "$REPOS_PATH/$1/config.sh.tmp"
-    echo "BACKUP_PATH='$BACKUP_PATH'" >> "$REPOS_PATH/$1/config.sh.tmp"
-    rm -f "$REPOS_PATH/$1/config.sh"
-    mv "$REPOS_PATH/$1/config.sh.tmp" "$REPOS_PATH/$1/config.sh"
+    for ((i=0; i<${#REPOS_CONFIG[@]}; i+=2)); do
+        VAR_NAME="${REPOS_CONFIG[i]}"
+        VAR_VALUE="${REPOS_CONFIG[i+1]}"
+        if [ "`cat "$REPOS_PATH/$1/config.sh" | grep "$VAR_NAME="`" != "" ]; then
+            cat "$REPOS_PATH/$1/config.sh" | grep -v "$VAR_NAME=" > "$REPOS_PATH/$1/config.sh.tmp"
+            echo "$VAR_NAME='$VAR_VALUE'" >> "$REPOS_PATH/$1/config.sh.tmp"
+            rm -f "$REPOS_PATH/$1/config.sh"
+            mv "$REPOS_PATH/$1/config.sh.tmp" "$REPOS_PATH/$1/config.sh"
+        fi
+    done
 }
 function buildDependencies() {
     checkRepo "$1"
