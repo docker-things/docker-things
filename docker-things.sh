@@ -56,15 +56,6 @@ function showUsage() {
     exit 1
 }
 
-function checkDependencies() {
-    for BIN in $DEPENDENCIES; do
-        if [ "`which $BIN`" == "" ]; then
-            showRed "[ERROR] Dependency not found: \"$BIN\""
-            exit
-        fi
-    done
-}
-
 # Self install
 function selfInstall() {
     showGreen "\nInstalling docker-things..."
@@ -140,6 +131,14 @@ function buildDependencies() {
 }
 
 # Checks
+function checkDependencies() {
+    for BIN in $DEPENDENCIES; do
+        if [ "`which $BIN`" == "" ]; then
+            showRed "[ERROR] Dependency not found: \"$BIN\""
+            exit
+        fi
+    done
+}
 function checkRepo() {
     if [ ! -d "$REPOS_PATH/$1" ]; then
         showRed "\n[ERROR][$1] Repository doesn't exist!"
