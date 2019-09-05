@@ -154,10 +154,7 @@ function configThing() {
         VAR_NAME="${REPOS_CONFIG[i]}"
         VAR_VALUE="${REPOS_CONFIG[i+1]}"
         if [ "`cat "$REPOS_PATH/$1/config.sh" | grep "$VAR_NAME="`" != "" ]; then
-            cat "$REPOS_PATH/$1/config.sh" | grep -v "$VAR_NAME=" > "$REPOS_PATH/$1/config.sh.tmp"
-            echo "$VAR_NAME='$VAR_VALUE'" >> "$REPOS_PATH/$1/config.sh.tmp"
-            rm -f "$REPOS_PATH/$1/config.sh"
-            mv "$REPOS_PATH/$1/config.sh.tmp" "$REPOS_PATH/$1/config.sh"
+            sed -ri "s/^${VAR_NAME}=.*/${VAR_NAME}=\"${VAR_VALUE//\//\\/}\"/" "$REPOS_PATH/$1/config.sh"
         fi
     done
 }
