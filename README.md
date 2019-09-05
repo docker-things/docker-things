@@ -6,9 +6,8 @@ A package manager to easily install any docker-things app
 
 ### Dependencies
 
- - docker
- - git
- - bash
+ - docker - All the apps are built in docker containers
+ - git    - All the apps are fetched from the github docker-things organization
 
 --------------------------------------------------------------------------------
 
