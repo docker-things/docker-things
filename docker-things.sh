@@ -64,7 +64,7 @@ function showUsage() {
     showNormal "  get          - Get repository"
     showNormal "  update       - Update repository"
     showNormal "  delete       - Delete app"
-    showNormal "  self-install - Install this script in /usr/bin"
+    showNormal "  self-install - Install this script in /usr/bin/docker-things"
     showNormal ""
     exit 1
 }
