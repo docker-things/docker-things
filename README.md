@@ -2,15 +2,11 @@
 
 A package manager to easily install any docker-things app
 
---------------------------------------------------------------------------------
-
 ### Dependencies
 
  - docker
  - git
  - bash
-
---------------------------------------------------------------------------------
 
 ### Usage
 
@@ -30,18 +26,17 @@ OPTIONS:
   self-install - Install this script in /usr/bin/docker-things
 ```
 
---------------------------------------------------------------------------------
-
 ### Installing docker-things
 
+This one-liner will fetch this repo, will install the docker-things script and then will remove the downloaded repo
+
 ```sh
-git clone https://github.com/docker-things/docker-things.git /tmp/docker-things
-bash /tmp/docker-things/docker-things.sh self-install
+git clone https://github.com/docker-things/docker-things.git /tmp/docker-things && bash /tmp/docker-things/docker-things.sh self-install && rm -rf /tmp/docker-things
 ```
 
---------------------------------------------------------------------------------
-
 ### Installing apps
+
+This command will install `firefox`, `chromium` and `dropbox`
 
 ```sh
 docker-things install firefox chromium dropbox
