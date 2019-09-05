@@ -53,7 +53,19 @@ function runCommand() {
 
 # Usage
 function showUsage() {
-    showNormal "\nUsage: $0 [list|build|install|start|stop|kill|get|update|delete|self-install] [THING]\n"
+    showNormal "\nUsage: $0 [OPTION] [THING]\n"
+    showNormal "OPTIONS:"
+    showNormal "  list         - List available things"
+    showNormal "  build        - Build docker image"
+    showNormal "  install      - Install app launcher (get & build if needed)"
+    showNormal "  start        - Start docker image"
+    showNormal "  stop         - Stop docker image"
+    showNormal "  kill         - Kill docker image"
+    showNormal "  get          - Get repository"
+    showNormal "  update       - Update repository"
+    showNormal "  delete       - Delete app"
+    showNormal "  self-install - Install this script in /usr/bin"
+    showNormal ""
     exit 1
 }
 
@@ -92,7 +104,7 @@ function selfInstall() {
     THIS_FILE="`pwd`/docker-things.sh"
     sudo sh -c "
         cat \"$CFG_FILE\" > $BIN_FILE \
-     && cat \"$THIS_FILE\" | grep -v '. config.sh' >> $BIN_FILE \
+     && cat \"$THIS_FILE\" | grep -v '. config.sh' | grep -v 'self-install' >> $BIN_FILE \
      && chmod +x \"$BIN_FILE\" \
      "
 
