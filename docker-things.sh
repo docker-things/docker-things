@@ -37,6 +37,7 @@ function main() {
 }
 function runCommand() {
     case "$1" in
+        "list")         listThings         ;;
         "build")        passCMD build $2   ;;
         "install")      passCMD install $2 ;;
         "start")        passCMD start $2   ;;
@@ -52,8 +53,35 @@ function runCommand() {
 
 # Usage
 function showUsage() {
-    showNormal "\nUsage: $0 [build|install|start|stop|kill|get|update|delete|self-install] [THING]\n"
+    showNormal "\nUsage: $0 [list|build|install|start|stop|kill|get|update|delete|self-install] [THING]\n"
     exit 1
+}
+
+# List available things
+function listThings() {
+    THINGS=(
+        android-studio
+        chromium
+        dropbox
+        duckdns
+        firefox
+        keepass
+        mattermost
+        smarthome
+        sublimetext
+        thunderbird
+        tunneling-service
+        )
+    showNormal "Available things:"
+
+    for THING in ${THINGS[@]}; do
+        if [ -f "/usr/bin/$THING" ]; then
+            showGreen " - $THING"
+        else
+            showNormal " - $THING"
+        fi
+    done
+    exit
 }
 
 # Self install
