@@ -11,6 +11,9 @@ REPOS_CONFIG=(
     # Where to store the backups (If empty there won't be any backups performed)
     BACKUP_PATH ""
 
+    # Where to store the communication pipes
+    FIFO_PATH="/tmp/docker-things/fifo"
+
     # Keepass DB & KEY dir paths
     KEEPASS_DB_PATH "$REPOS_PATH/dropbox/data/Dropbox/kp"
     KEEPASS_KEY_PATH "$REPOS_PATH/keepass/data/key"
