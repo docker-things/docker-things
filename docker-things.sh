@@ -163,11 +163,11 @@ function updateThing() {
     checkRepo "$1"
     cd "$REPOS_PATH/$1" && git checkout . && git pull
     configThing "$1"
-    buildDependencies "$1"
+    updateDependencies "$1"
 }
 function upgradeThing() {
     updateThing "$1"
-    installThing "$1"
+    passCMD install "$1"
 }
 function deleteThing() {
     showGreen "\nDeleting $1..."
@@ -189,6 +189,14 @@ function buildDependencies() {
     if [ -f "$REPOS_PATH/$1/.dependencies" ]; then
         for DEPENDENCY in `cat "$REPOS_PATH/$1/.dependencies"`; do
             passCMD build "$DEPENDENCY"
+        done
+    fi
+}
+function updateDependencies() {
+    checkRepo "$1"
+    if [ -f "$REPOS_PATH/$1/.dependencies" ]; then
+        for DEPENDENCY in `cat "$REPOS_PATH/$1/.dependencies"`; do
+            updateThing "$DEPENDENCY"
         done
     fi
 }
