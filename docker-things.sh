@@ -35,16 +35,24 @@ function main() {
         done
     fi
 }
+
 function runCommand() {
     case "$1" in
         "list")         listThings         ;;
         "build")        passCMD build $2   ;;
         "install")      passCMD install $2 ;;
         "start")        passCMD start $2   ;;
+        "status")       passCMD status $2  ;;
+        "connect")      passCMD connect $2 ;;
+        "logs")         passCMD logs $2    ;;
         "stop")         passCMD stop $2    ;;
+        "restart")      passCMD restart $2 ;;
         "kill")         passCMD kill $2    ;;
+        "backup")       passCMD backup $2  ;;
+        "restore")      passCMD restore $2 ;;
         "get")          getThing $2        ;;
         "update")       updateThing $2     ;;
+        "upgrade")      upgradeThing $2    ;;
         "delete")       deleteThing $2     ;;
         "fifo-test")    fifoXdgOpen        ;;
         "self-install") selfInstall        ;;
@@ -57,13 +65,20 @@ function showUsage() {
     showNormal "\nUsage: $0 [OPTION] [THING]\n"
     showNormal "OPTIONS:"
     showNormal "  list         - List available things"
-    showNormal "  build        - Build docker image"
-    showNormal "  install      - Install app launcher (get & build if needed)"
-    showNormal "  start        - Start docker image"
-    showNormal "  stop         - Stop docker image"
-    showNormal "  kill         - Kill docker image"
+    showNormal "  build        - Build app"
+    showNormal "  install      - Install app launcher (get & build app if needed)"
+    showNormal "  start        - Start app"
+    showNormal "  status       - Show app status"
+    showNormal "  connect      - Connect to the docker image"
+    showNormal "  logs         - Show app logs"
+    showNormal "  stop         - Stop app"
+    showNormal "  kill         - Kill app"
+    showNormal "  restart      - Restart app"
+    showNormal "  backup       - Backup app"
+    showNormal "  restore      - Restore backup of the app"
     showNormal "  get          - Get repository"
     showNormal "  update       - Update repository"
+    showNormal "  upgrade      - Upgrade app"
     showNormal "  delete       - Delete app"
     showNormal "  self-install - Install this script in /usr/bin/docker-things"
     showNormal ""
@@ -150,8 +165,13 @@ function updateThing() {
     configThing "$1"
     buildDependencies "$1"
 }
+function upgradeThing() {
+    updateThing "$1"
+    installThing "$1"
+}
 function deleteThing() {
     showGreen "\nDeleting $1..."
+    passCMD remove "$1"
     rm -rf "$REPOS_PATH/$1"
 }
 function configThing() {
