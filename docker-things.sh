@@ -67,6 +67,8 @@ function showUsage() {
     showNormal "  delete       - Delete app"
     showNormal "  self-install - Install this script in /usr/bin/docker-things"
     showNormal ""
+
+    listThings
     exit 1
 }
 
@@ -95,6 +97,8 @@ function listThings() {
             showNormal " - $THING"
         fi
     done
+
+    showNormal ""
     exit
 }
 
