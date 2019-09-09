@@ -46,6 +46,7 @@ function runCommand() {
         "get")          getThing $2        ;;
         "update")       updateThing $2     ;;
         "delete")       deleteThing $2     ;;
+        "fifo-test")    fifoXdgOpen        ;;
         "self-install") selfInstall        ;;
         *)              showUsage          ;;
     esac
@@ -74,6 +75,7 @@ function listThings() {
     THINGS=(
         android-studio
         chromium
+        dbeaver
         dropbox
         duckdns
         firefox
@@ -193,6 +195,13 @@ function checkRepo() {
         showRed "\n[ERROR][$1] Repository doesn't contain \"config.sh\"!"
         exit 1
     fi
+}
+
+# FIFO listeners
+function fifoXdgOpen() {
+    while read line; do
+      echo "GOT THIS SHIT: \"$line\""
+    done < "${FIFO_PATH}/xdg-open"
 }
 
 # Actually do stuff
