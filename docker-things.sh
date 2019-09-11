@@ -38,25 +38,25 @@ function main() {
 
 function runCommand() {
     case "$1" in
-        "list")         listThings         ;;
-        "build")        passCMD build $2   ;;
-        "install")      passCMD install $2 ;;
-        "start")        passCMD start $2   ;;
-        "status")       passCMD status $2  ;;
-        "connect")      passCMD connect $2 ;;
-        "logs")         passCMD logs $2    ;;
-        "stop")         passCMD stop $2    ;;
-        "restart")      passCMD restart $2 ;;
-        "kill")         passCMD kill $2    ;;
-        "backup")       passCMD backup $2  ;;
-        "restore")      passCMD restore $2 ;;
-        "get")          getThing $2        ;;
-        "update")       updateThing $2     ;;
-        "upgrade")      upgradeThing $2    ;;
-        "delete")       deleteThing $2     ;;
-        "fifo-test")    fifoXdgOpen        ;;
-        "self-install") selfInstall        ;;
-        *)              showUsage          ;;
+        "list")         listThings          ;;
+        "build")        passCMD build $2    ;;
+        "install")      passCMD install $2  ;;
+        "start")        passCMD start $2    ;;
+        "status")       passCMD status $2   ;;
+        "connect")      passCMD connect $2  ;;
+        "logs")         passCMD logs $2     ;;
+        "stop")         passCMD stop $2     ;;
+        "restart")      passCMD restart $2  ;;
+        "kill")         passCMD kill $2     ;;
+        "backup")       passCMD backup $2   ;;
+        "restore")      passCMD restore $2  ;;
+        "get")          getThing $2         ;;
+        "update")       updateThing $2      ;;
+        "upgrade")      upgradeThing $2     ;;
+        "delete")       deleteThing $2      ;;
+        "fifo-listen")  launchFifoListeners ;;
+        "self-install") selfInstall         ;;
+        *)              showUsage           ;;
     esac
 }
 
@@ -229,11 +229,34 @@ function checkRepo() {
     fi
 }
 
+# FIFO generic listener
+function fifoListener() {
+    echo "Launching FIFO listener for $1"
+    while [ 1 ]; do
+        while [ -p "${FIFO_PATH}/$1" ]; do
+            read line < "${FIFO_PATH}/$1"
+            $1 $line &
+        done
+        echo "FIFO not found. Sleeping 5s..."
+        sleep 5s
+    done
+}
+
 # FIFO listeners
-function fifoXdgOpen() {
-    while read line; do
-      echo "GOT THIS SHIT: \"$line\""
-    done < "${FIFO_PATH}/xdg-open"
+function launchFifoListeners() {
+    for FIFO in ${FIFO_LISTENERS[@]}; do
+        PID_FILE="${FIFO_PATH}/${FIFO}.pid"
+
+        # Kill running listeners
+        if [ -f "$PID_FILE" ]; then
+            PID="`cat $PID_FILE`"
+            echo "Killing FIFO listener for $FIFO (PID: $PID)"
+            kill -9 $PID
+        fi
+
+        fifoListener $FIFO &
+        echo $! > "$PID_FILE"
+    done
 }
 
 # Actually do stuff
