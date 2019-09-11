@@ -140,7 +140,7 @@ function passCMD() {
     elif [ "$1" == "install" ]; then
         passCMD build "$2"
     fi
-    showGreen "\n${1^}ing $2..."
+    showGreen "\n${1^} $2..."
     checkRepo "$2"
     cd "$REPOS_PATH/$2"
     bash docker.sh "$1"
