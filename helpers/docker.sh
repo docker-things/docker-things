@@ -30,19 +30,20 @@ function showRed() { echo -e "\033[01;31m$@\033[00m"; }
 # Launch the required action
 function scriptRun() {
     case "$1" in
-        "build")   scriptBuild $@    ;;
-        "start")   scriptStart $@    ;;
-        "logs")    scriptLogs $@     ;;
-        "status")  scriptStatus $@   ;;
-        "connect") scriptConnect $@  ;;
-        "stop")    scriptStop $@     ;;
-        "kill")    scriptKill $@     ;;
-        "restart") scriptRestart $@  ;;
-        "backup")  scriptBackup $@   ;;
-        "remove")  scriptRemove $@   ;;
-        "restore") scriptRestore $@  ;;
-        "install") scriptInstall $@  ;;
-        *)         showUsage $@      ;;
+        "build")       scriptBuild $@      ;;
+        "start")       scriptStart $@      ;;
+        "logs")        scriptLogs $@       ;;
+        "status")      scriptStatus $@     ;;
+        "connect")     scriptConnect $@    ;;
+        "stop")        scriptStop $@       ;;
+        "kill")        scriptKill $@       ;;
+        "restart")     scriptRestart $@    ;;
+        "backup")      scriptBackup $@     ;;
+        "remove")      scriptRemove $@     ;;
+        "restore")     scriptRestore $@    ;;
+        "install")     scriptInstall $@    ;;
+        "set-default") scriptSetDefault $@ ;;
+        *)             showUsage $@        ;;
     esac
 }
 
@@ -339,6 +340,16 @@ function imageBuilt() {
     fi
 }
 
+# Set application as default
+function scriptSetDefault() {
+    safeProjectName="`echo "$PROJECT_NAME" | awk -F':' '{print $1}' | sed -e 's/[^a-zA-Z0-9\-]/_/g'`"
+    if [ "$APP_GENERIC_NAME" == "Web Browser" ]; then
+        xdg-settings set default-web-browser "${safeProjectName}.desktop"
+    else
+        showYellow "[WARN] App of \"$APP_GENERIC_NAME\" type can't be set as default! Functionality not implemented!"
+    fi
+}
+
 # Make the app runnable from the host system
 function scriptInstall() {
     showGreen "\nInstalling $PROJECT_NAME..."
@@ -368,6 +379,7 @@ function scriptInstall() {
             echo \"[Desktop Entry]\" > $DESKTOP_FILE \
          && echo \"Encoding=UTF-8\" >> $DESKTOP_FILE \
          && echo \"Name=${safeProjectName^}\" >> $DESKTOP_FILE \
+         && echo \"GenericName=$APP_GENERIC_NAME\" >> $DESKTOP_FILE \
          && echo \"Comment=${safeProjectName^}\" >> $DESKTOP_FILE \
          && echo \"Icon=`pwd`/icon.png\" >> $DESKTOP_FILE \
          && echo \"Exec=$BIN_FILE $APP_PARAM\" >> $DESKTOP_FILE \

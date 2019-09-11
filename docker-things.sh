@@ -38,25 +38,26 @@ function main() {
 
 function runCommand() {
     case "$1" in
-        "list")         listThings          ;;
-        "build")        passCMD build $2    ;;
-        "install")      passCMD install $2  ;;
-        "start")        passCMD start $2    ;;
-        "status")       passCMD status $2   ;;
-        "connect")      passCMD connect $2  ;;
-        "logs")         passCMD logs $2     ;;
-        "stop")         passCMD stop $2     ;;
-        "restart")      passCMD restart $2  ;;
-        "kill")         passCMD kill $2     ;;
-        "backup")       passCMD backup $2   ;;
-        "restore")      passCMD restore $2  ;;
-        "get")          getThing $2         ;;
-        "update")       updateThing $2      ;;
-        "upgrade")      upgradeThing $2     ;;
-        "delete")       deleteThing $2      ;;
-        "fifo-listen")  launchFifoListeners ;;
-        "self-install") selfInstall         ;;
-        *)              showUsage           ;;
+        "list")         listThings             ;;
+        "build")        passCMD build $2       ;;
+        "install")      passCMD install $2     ;;
+        "start")        passCMD start $2       ;;
+        "status")       passCMD status $2      ;;
+        "connect")      passCMD connect $2     ;;
+        "logs")         passCMD logs $2        ;;
+        "stop")         passCMD stop $2        ;;
+        "restart")      passCMD restart $2     ;;
+        "kill")         passCMD kill $2        ;;
+        "backup")       passCMD backup $2      ;;
+        "restore")      passCMD restore $2     ;;
+        "set-default")  passCMD set-default $2 ;;
+        "get")          getThing $2            ;;
+        "update")       updateThing $2         ;;
+        "upgrade")      upgradeThing $2        ;;
+        "delete")       deleteThing $2         ;;
+        "fifo-listen")  launchFifoListeners    ;;
+        "self-install") selfInstall            ;;
+        *)              showUsage              ;;
     esac
 }
 
