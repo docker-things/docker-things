@@ -9,7 +9,7 @@ A package manager to easily install any docker-things app
 This one-liner will fetch this repo, will install the docker-things script and then will remove the downloaded repo.
 
 ```sh
-git clone https://github.com/docker-things/docker-things.git /tmp/docker-things && bash /tmp/docker-things/docker-things.sh self-install && rm -rf /tmp/docker-things
+git clone https://github.com/docker-things/docker-things.git /tmp/dtrepo && bash /tmp/dtrepo/docker-things.sh self-install && rm -rf /tmp/dtrepo
 ```
 
 --------------------------------------------------------------------------------
