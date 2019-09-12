@@ -4,7 +4,7 @@ A package manager to easily install any docker-things app
 
 --------------------------------------------------------------------------------
 
-### Installing docker-things
+### Installing/Upgrading docker-things
 
 This one-liner will fetch this repo, will install the docker-things script and then will remove the downloaded repo.
 
@@ -93,7 +93,6 @@ OPTIONS:
   logs         - Show app logs
   restart      - Restart app
   restore      - Restore backup of the app
-  self-upgrade - Upgrade docker-things from the github repo
   set-default  - Set app as default for the host system
   start        - Start app
   status       - Show app status

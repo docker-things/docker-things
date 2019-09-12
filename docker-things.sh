@@ -59,7 +59,6 @@ function runCommand() {
         "delete")       deleteThing $2         ;;
         "fifo-listen")  launchFifoListeners    ;;
         "self-install") selfInstall            ;;
-        "self-upgrade") selfUpgrade            ;;
         *)              showUsage              ;;
     esac
 }
@@ -82,7 +81,6 @@ function showUsage() {
     showNormal "  restart      - Restart app"
     showNormal "  restore      - Restore backup of the app"
     showNormal "  self-install - Install this script in /usr/bin/docker-things"
-    showNormal "  self-upgrade - Upgrade docker-things from the github repo"
     showNormal "  set-default  - Set app as default for the host system"
     showNormal "  start        - Start app"
     showNormal "  status       - Show app status"
@@ -138,22 +136,6 @@ function selfInstall() {
      "
 
     showGreen "\nScript installed @ $BIN_FILE..."
-}
-
-# Self upgrade
-function selfUpgrade() {
-    showGreen "\nUpgrading docker-things..."
-    if [ -d /tmp/dtrepo ]; then
-        rm -rf /tmp/dtrepo
-    fi
-    git clone https://github.com/docker-things/docker-things.git /tmp/dtrepo
-    if [ -f /tmp/dtrepo/docker-things.sh ]; then
-        chmod +x /tmp/dtrepo/docker-things.sh
-        /tmp/dtrepo/docker-things.sh self-install &
-        disown
-    else
-        showRed "[ERROR] Couldn't get the repository!"
-    fi
 }
 
 # Passthrough calls
