@@ -1,5 +1,7 @@
 #!/bin/bash
 
+DTVERSION=0.1
+
 DEPENDENCIES="bash docker git"
 
 # WhereAmI function
@@ -64,6 +66,7 @@ function runCommand() {
 
 # Usage
 function showUsage() {
+    showNormal "\nDocker Things v$DTVERSION"
     showNormal "\nUsage: $0 [OPTION] [THING]\n"
     showNormal "OPTIONS:"
     showNormal "  backup       - Backup app"
