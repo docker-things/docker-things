@@ -16,30 +16,30 @@ git clone https://github.com/docker-things/docker-things.git /tmp/docker-things 
 
 ### Installing apps
 
-This command will install `firefox`, `chromium` and `dropbox`
+This command will install `firefox`, `chromium` and `thunderbird`
 
 ```sh
-docker-things install firefox chromium dropbox
+docker-things install firefox chromium thunderbird
 ```
 
 --------------------------------------------------------------------------------
 
 ### Upgrading apps
 
-This command will upgrade `firefox`, `chromium` and `dropbox`
+This command will upgrade `firefox`, `chromium` and `thunderbird`
 
 ```sh
-docker-things upgrade firefox chromium dropbox
+docker-things upgrade firefox chromium thunderbird
 ```
 
 --------------------------------------------------------------------------------
 
 ### Uninstalling apps
 
-This command will uninstall `firefox`, `chromium` and `dropbox`
+This command will uninstall `firefox`, `chromium` and `thunderbird`
 
 ```sh
-docker-things delete firefox chromium dropbox
+docker-things delete firefox chromium thunderbird
 ```
 
 --------------------------------------------------------------------------------
