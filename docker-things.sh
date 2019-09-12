@@ -148,8 +148,8 @@ function selfUpgrade() {
     fi
     git clone https://github.com/docker-things/docker-things.git /tmp/dtrepo
     if [ -f /tmp/dtrepo/docker-things.sh ]; then
-        bash /tmp/dtrepo/docker-things.sh self-install
-        rm -rf /tmp/dtrepo
+        chmod +x /tmp/dtrepo/docker-things.sh
+        exec /tmp/dtrepo/docker-things.sh self-install
     else
         showRed "[ERROR] Couldn't get the repository!"
     fi
