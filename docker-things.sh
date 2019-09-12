@@ -143,13 +143,14 @@ function selfInstall() {
 # Self upgrade
 function selfUpgrade() {
     showGreen "\nUpgrading docker-things..."
-    if [ -d /tmp/docker-things ]; then
-        rm -rf /tmp/docker-things
+    if [ -d /tmp/docker-things/repo ]; then
+        rm -rf /tmp/docker-things/repo
     fi
-    git clone https://github.com/docker-things/docker-things.git /tmp/docker-things
-    if [ -f /tmp/docker-things/docker-things.sh ]; then
-        bash /tmp/docker-things/docker-things.sh self-install
-        rm -rf /tmp/docker-things
+    mkidr -p /tmp/docker-things/
+    git clone https://github.com/docker-things/docker-things.git /tmp/docker-things/repo
+    if [ -f /tmp/docker-things/repo/docker-things.sh ]; then
+        bash /tmp/docker-things/repo/docker-things.sh self-install
+        rm -rf /tmp/docker-things/repo
     else
         showRed "[ERROR] Couldn't get the repository!"
     fi
