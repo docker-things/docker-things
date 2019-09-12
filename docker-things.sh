@@ -143,7 +143,16 @@ function selfInstall() {
 # Self upgrade
 function selfUpgrade() {
     showGreen "\nUpgrading docker-things..."
-    git clone https://github.com/docker-things/docker-things.git /tmp/docker-things && bash /tmp/docker-things/docker-things.sh self-install && rm -rf /tmp/docker-things
+    if [ -d /tmp/docker-things ]; then
+        rm -rf /tmp/docker-things
+    fi
+    git clone https://github.com/docker-things/docker-things.git /tmp/docker-things
+    if [ -f /tmp/docker-things/docker-things.sh ]; then
+        bash /tmp/docker-things/docker-things.sh self-install
+        rm -rf /tmp/docker-things
+    else
+        showRed "[ERROR] Couldn't get the repository!"
+    fi
 }
 
 # Passthrough calls
