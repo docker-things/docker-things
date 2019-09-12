@@ -44,7 +44,7 @@ docker-things delete firefox chromium thunderbird
 
 --------------------------------------------------------------------------------
 
-### Set apps as default for the host system apps
+### Set apps as default for the host system
 
 Assuming you installed Firefox and want it to be your default browser, run this:
 
