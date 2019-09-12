@@ -57,6 +57,7 @@ function runCommand() {
         "delete")       deleteThing $2         ;;
         "fifo-listen")  launchFifoListeners    ;;
         "self-install") selfInstall            ;;
+        "self-upgrade") selfUpgrade            ;;
         *)              showUsage              ;;
     esac
 }
@@ -65,23 +66,26 @@ function runCommand() {
 function showUsage() {
     showNormal "\nUsage: $0 [OPTION] [THING]\n"
     showNormal "OPTIONS:"
-    showNormal "  list         - List available things"
+    showNormal "  backup       - Backup app"
     showNormal "  build        - Build app"
+    showNormal "  connect      - Connect to the docker image"
+    showNormal "  delete       - Delete app"
+    showNormal "  fifo-listen  - Listens to FIFO messages from apps"
+    showNormal "  get          - Get repository"
     showNormal "  install      - Install app launcher (get & build app if needed)"
+    showNormal "  kill         - Kill app"
+    showNormal "  list         - List available things"
+    showNormal "  logs         - Show app logs"
+    showNormal "  restart      - Restart app"
+    showNormal "  restore      - Restore backup of the app"
+    showNormal "  self-install - Install this script in /usr/bin/docker-things"
+    showNormal "  self-upgrade - Upgrade docker-things from the github repo"
+    showNormal "  set-default  - Set app as default for the host system"
     showNormal "  start        - Start app"
     showNormal "  status       - Show app status"
-    showNormal "  connect      - Connect to the docker image"
-    showNormal "  logs         - Show app logs"
     showNormal "  stop         - Stop app"
-    showNormal "  kill         - Kill app"
-    showNormal "  restart      - Restart app"
-    showNormal "  backup       - Backup app"
-    showNormal "  restore      - Restore backup of the app"
-    showNormal "  get          - Get repository"
     showNormal "  update       - Update repository"
     showNormal "  upgrade      - Upgrade app"
-    showNormal "  delete       - Delete app"
-    showNormal "  self-install - Install this script in /usr/bin/docker-things"
     showNormal ""
 
     listThings
@@ -131,6 +135,12 @@ function selfInstall() {
      "
 
     showGreen "\nScript installed @ $BIN_FILE..."
+}
+
+# Self upgrade
+function selfUpgrade() {
+    showGreen "\nUpgrading docker-things..."
+    git clone https://github.com/docker-things/docker-things.git /tmp/docker-things && bash /tmp/docker-things/docker-things.sh self-install && rm -rf /tmp/docker-things
 }
 
 # Passthrough calls
