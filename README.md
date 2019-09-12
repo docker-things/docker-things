@@ -14,7 +14,7 @@ A package manager to easily install any docker-things app
 ### Usage
 
 ```
-Usage: /usr/bin/docker-things [OPTION] [THING]
+Usage: docker-things [OPTION] [THING]
 
 OPTIONS:
   backup       - Backup app
