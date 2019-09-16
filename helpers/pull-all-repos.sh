@@ -17,7 +17,7 @@ cd "$(get_script_dir)"
 cd ../../
 REPOS_DIR="`pwd`"
 
-# Go through each repo containing a config.sh script
+# Go through each repo containing a .git dir
 for DIR in `find ./ -maxdepth 2 -name ".git"`; do
     echo -e "\n > $DIR"
 
