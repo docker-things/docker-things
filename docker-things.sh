@@ -53,6 +53,7 @@ function runCommand() {
         "backup")       passCMD backup $2      ;;
         "restore")      passCMD restore $2     ;;
         "set-default")  passCMD set-default $2 ;;
+        "clear-data")   passCMD clear-data $2  ;;
         "get")          getThing $2            ;;
         "update")       updateThing $2         ;;
         "upgrade")      upgradeThing $2        ;;
@@ -70,6 +71,7 @@ function showUsage() {
     showNormal "OPTIONS:"
     showNormal "  backup       - Backup app"
     showNormal "  build        - Build app"
+    showNormal "  clear-data   - Removes any data stored by the app"
     showNormal "  connect      - Connect to the docker image"
     showNormal "  delete       - Delete app"
     showNormal "  fifo-listen  - Listens to FIFO messages from apps"
