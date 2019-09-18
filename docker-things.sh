@@ -102,6 +102,7 @@ function listThings() {
         dropbox
         duckdns
         firefox
+        flutter
         keepass
         mattermost
         smarthome
