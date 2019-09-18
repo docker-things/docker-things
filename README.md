@@ -83,6 +83,7 @@ Usage: docker-things [OPTION] [THING]
 OPTIONS:
   backup       - Backup app
   build        - Build app
+  clear-data   - Removes any data stored by the app
   connect      - Connect to the docker image
   delete       - Delete app
   fifo-listen  - Listens to FIFO messages from apps
