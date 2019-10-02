@@ -20,6 +20,9 @@ REPOS_CONFIG=(
     # Keepass DB & KEY dir paths
     KEEPASS_DB_PATH "$REPOS_PATH/dropbox/data/Dropbox/kp"
     KEEPASS_KEY_PATH "$REPOS_PATH/keepass/data/key"
+
+    # Zigbee2MQTT device path
+    ZIGBEE2MQTT_DEVICE "/dev/ttyACM0"
     )
 
 # Which binaries should have fifo listeners

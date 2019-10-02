@@ -111,6 +111,7 @@ function listThings() {
         sublimetext
         thunderbird
         tunneling-service
+        zigbee2mqtt
         )
     showNormal "Available things:"
 
