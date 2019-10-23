@@ -105,6 +105,7 @@ function listThings() {
         duckdns
         firefox
         flutter
+        intellij-ultimate
         keepass
         mattermost
         smarthome
