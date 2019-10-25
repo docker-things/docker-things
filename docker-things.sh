@@ -107,6 +107,7 @@ function listThings() {
         flutter
         intellij-ultimate
         keepass
+        mariadb
         mattermost
         postman
         smarthome
