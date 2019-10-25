@@ -108,6 +108,7 @@ function listThings() {
         intellij-ultimate
         keepass
         mattermost
+        postman
         smarthome
         sublimetext
         thunderbird
