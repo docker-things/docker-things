@@ -106,6 +106,7 @@ function listThings() {
         firefox
         flutter
         intellij-ultimate
+        intellij-ultimate-npm
         keepass
         mariadb
         mattermost
