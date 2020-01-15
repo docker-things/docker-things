@@ -105,6 +105,7 @@ function listThings() {
         duckdns
         firefox
         flutter
+        huawei-watch-face-maker
         intellij-ultimate
         intellij-ultimate-npm
         keepass
